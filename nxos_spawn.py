@@ -260,18 +260,18 @@ class nxos_spawn(object):
         p_tuple is a list of pattern tupple,
          each tuple has ('pattern to expect', 'synopsis', action_fn)
         '''
-        p_tuple = [(pexpect.TIMEOUT, #1
+        p_tuple = [(pexpect.TIMEOUT,
                     'command timed out', 'return'),
-                  ('Permission denied.*Cannot overwrite existing file', #2
+                  ('Permission denied.*Cannot overwrite existing file',
                    'permission deined', 'return'),
                   ('Overwriting/deleting this image is not allowed',
                    'overwrite not allowed',
                    'return'),
-                  ('Are you sure you want to continue connecting (yes/no)?', #3
+                  ('Are you sure you want to continue connecting (yes/no)?',
                    'scp connecting prompt', self._send_yes),
-                  ('Do you want to overwrite (y/n)?', #4
+                  ('Do you want to overwrite (y/n)?',
                    'overwrite prompt', self._send_y),
-                  ('[Pp]ass.*?:', #5
+                  ('[Pp]ass.*?:',
                    'password prompt', 'break')]
         p_list = [p[0] for p in p_tuple]
         while True:
@@ -283,13 +283,13 @@ class nxos_spawn(object):
                 break
             p_tuple[index][2]()
         self.c.sendline(password)
-        p_tuple = [(pexpect.TIMEOUT, #1
+        p_tuple = [(pexpect.TIMEOUT,
                    'copy timed out'),
-                  ('Copy complete.*',#2 
+                  ('Copy complete.*', 
                    'copy completed'),
-                  ('Copy failed.*',#3
+                  ('Copy failed.*',
                    'copy failed'),
-                  ('No such file or directory',#4
+                  ('No such file or directory',
                    'file not found')]
         index = self.c.expect([p[0] for p in p_tuple],
                               timeout=600)

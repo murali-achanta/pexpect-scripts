@@ -1,0 +1,26 @@
+sw1:
+      console: '192.168.1.10 2001'
+      kickstart: 'n7000-s2-kickstart.bin'
+      isan: 'n7000-s2-dk9.bin'
+      kickstart_dest: 'k_sw1'
+      isan_dest: 'i_sw1'
+      ws_name: '/tftpboot/images'
+      scp_cmd_template: 'copy scp://user@192.168.1.1/%s/n7ks2/images/%s bootflash:%s vrf management'
+
+sw2:
+      console: '192.168.1.10 2002'
+      kickstart: 'n7000-s1-kickstart.bin'
+      isan: 'n7000-s1-dk9.bin'
+      kickstart_dest: 'k_sw2'
+      isan_dest: 'i_sw2'
+      ws_name: '/tftpboot/images'
+      scp_cmd_template: 'copy scp://user@192.168.1.1/%s/n7ks1/images/%s bootflash:%s vrf management'
+
+sw3:
+      console: '192.168.1.10 2003'
+      kickstart: 'n7700-s2-kickstart.bin'
+      isan: 'n7700-s2-dk9.bin'
+      kickstart_dest: 'k_bug'
+      isan_dest: 'i_bug'
+      ws_name: '/tftpboot/images'
+      scp_cmd_template: 'copy scp://user@192.168.1.1/%s/n77s2/images/%s bootflash:%s vrf management'
